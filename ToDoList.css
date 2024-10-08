@@ -1,0 +1,45 @@
+html,
+body {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: blueviolet;
+}
+
+.main-Container {
+  min-height: 100%;
+  min-width: 100%;
+  /* font-family: "Roboto"; */
+  font-weight: 500;
+  /* border: 1px solid black; */
+}
+
+.sub-Container {
+  min-height: 350px;
+  min-width: 1000px;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 5px 5px 0px 0px;
+  padding: 50px 50px 10px 50px;
+}
+
+.container-list {
+  min-height: fit-content;
+  min-width: 1000px;
+  background-color: white;
+  margin: 0 auto;
+  padding: 0px 0px;
+}
+
+.pagination {
+  min-width: 1000px;
+  margin: 10px auto;
+  /* border: 1px solid white; */
+}
+
+.table-Data {
+  overflow: auto;
+}
+
+.table-Data::-webkit-scrollbar {
+  display: none;
+}

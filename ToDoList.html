@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./bootstrap/bootstrap-4.5.3-dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./ToDoList.css" />
+    <link rel="stylesheet" href="./bootstrap/KFOmCnqEu92Fr1Me5WZLCzYlKw.ttf" />
+    <title>ToDo List</title>
+  </head>
+  <body>
+    <div
+      class="main-Container d-flex justify-content-center align-content-center flex-column"
+    >
+      <div class="sub-Container mt-5 mb-2">
+        <form id="toDoForm">
+          <div class="mb-3 row">
+            <div class="col-md-12">
+              <label for="noteInput" class="form-label">Enter Your Note</label>
+              <input
+                type="text"
+                class="form-control"
+                id="noteInput"
+                aria-describedby="emailHelp"
+              />
+              <div id="noteSuggestionText" class="form-text"></div>
+            </div>
+          </div>
+          <div class="mb-3 row" id="scheduleDateTime">
+            <div class="col-md-6">
+              <label for="scheduleDateInput" class="form-label"
+                >Schedule Date</label
+              >
+              <input type="date" class="form-control" id="scheduleDateInput" />
+            </div>
+            <div class="col-md-6">
+              <label for="scheduleTimeInput" class="form-label"
+                >Schedule Time</label
+              >
+              <input type="time" class="form-control" id="scheduleTimeInput" />
+            </div>
+          </div>
+          <div
+            class="mt-4 form-check row d-flex justify-content-center align-content-center"
+          >
+            <div class="col-md-1">
+              <input type="checkbox" class="form-check-input" id="MonCheck" />
+              <label class="form-check-label" for="MonCheck">Mon</label>
+            </div>
+            <div class="col-md-1">
+              <input type="checkbox" class="form-check-input" id="TueCheck" />
+              <label class="form-check-label" for="MonCheck">Tue</label>
+            </div>
+            <div class="col-md-1">
+              <input type="checkbox" class="form-check-input" id="WedCheck" />
+              <label class="form-check-label" for="MonCheck">Wed</label>
+            </div>
+            <div class="col-md-1">
+              <input type="checkbox" class="form-check-input" id="ThuCheck" />
+              <label class="form-check-label" for="MonCheck">Thus</label>
+            </div>
+            <div class="col-md-1">
+              <input type="checkbox" class="form-check-input" id="FriCheck" />
+              <label class="form-check-label" for="MonCheck">Fri</label>
+            </div>
+            <div class="col-md-1">
+              <input type="checkbox" class="form-check-input" id="SatCheck" />
+              <label class="form-check-label" for="MonCheck">Sat</label>
+            </div>
+            <div class="col-md-1">
+              <input type="checkbox" class="form-check-input" id="SunCheck" />
+              <label class="form-check-label" for="MonCheck">Sun</label>
+            </div>
+          </div>
+          <div class="mt-2">
+            <div class="float-left d-flex">
+              <div class="form-check">
+                <input
+                  type="radio"
+                  name="sort"
+                  id="asc"
+                  style="width: 16px; height: 16px"
+                  class="form-check-input"
+                  onchange="radioInput('asc')"
+                  checked
+                />
+                <label class="form-check-label" for="asc">ASC</label>
+              </div>
+              <div class="form-check mx-3">
+                <input
+                  type="radio"
+                  name="sort"
+                  id="desc"
+                  style="width: 16px; height: 16px"
+                  class="form-check-input"
+                  onchange="radioInput('desc')"
+                />
+                <label for="des" class="form-check-label">DES</label>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary float-right submit-form"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              style="display: none"
+              class="btn btn-secondary float-right cancel-edit-form"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              style="display: none"
+              class="btn btn-danger float-right edit-form mx-2"
+            >
+              Edit
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="container-list">
+        <table class="table caption-top mb-0" id="noteListInfo">
+          <!-- <caption>
+            List of Note
+          </caption> -->
+          <thead class="table-dark">
+            <tr>
+              <th class="col-1" style="width: 10%">Id</th>
+              <th class="col-4" style="width: 30%">Note</th>
+              <th class="col-2" style="width: 10%">Date</th>
+              <th class="col-1" style="width: 10%">Time</th>
+              <th class="col-2" style="width: 20%">Days</th>
+              <th class="col-2" style="width: 20%">Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-Data"></tbody>
+        </table>
+      </div>
+
+      <div class="pagination d-flex justify-content-between">
+        <button
+          type="button"
+          class="btn btn-outline-primary text-white border-white"
+          id="previous-Page"
+        >
+          Previous
+        </button>
+        <div class="pagination-text text-white"></div>
+        <div class="pagination-total-text text-white"></div>
+        <!-- <div class="select-numberOfPage">
+          <select
+            class="form-select form-control"
+            aria-label="Default select example"
+          >
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+          </select>
+        </div> -->
+        <button
+          type="button"
+          class="btn btn-outline-primary text-white border-white"
+          id="next-Page"
+        >
+          Next
+        </button>
+      </div>
+      <div class="store-container">
+        <input type="hidden" class="form-control" id="noteId" value="0" />
+        <input type="hidden" class="form-control" id="totalPage" value="1" />
+        <input type="hidden" class="form-control" id="currentPage" value="1" />
+        <input type="hidden" class="form-control" id="sortStatus" value="asc" />
+        <input type="hidden" class="form-control" id="isEdit" value="false" />
+      </div>
+    </div>
+  </body>
+  <script src="./js/jquery-3.7.0.js"></script>
+  <script src="./ToDoList.js"></script>
+  <script></script>
+</html>
